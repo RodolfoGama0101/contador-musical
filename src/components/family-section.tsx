@@ -53,6 +53,7 @@ export function FamilySection({
           <CounterRow
             key={instrument.id}
             label={instrument.label}
+            instrument={instrument.id}
             value={counts[instrument.id]}
             onDecrease={() => onAdjust(instrument.id, -1)}
             onIncrease={() => onAdjust(instrument.id, 1)}

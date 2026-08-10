@@ -1,16 +1,28 @@
 import styles from "./musical-counter.module.css";
+import {
+  InstrumentIllustration,
+  type InstrumentArtworkId,
+} from "@/components/instrument-illustration";
 
 type CounterRowProps = {
   label: string;
   value: number;
   onDecrease: () => void;
   onIncrease: () => void;
+  instrument?: InstrumentArtworkId;
 };
 
-export function CounterRow({ label, value, onDecrease, onIncrease }: CounterRowProps) {
+export function CounterRow({ label, value, onDecrease, onIncrease, instrument }: CounterRowProps) {
   return (
     <div className={styles.counterRow}>
-      <span className={styles.counterLabel}>{label}</span>
+      <span className={styles.counterIdentity}>
+        {instrument && (
+          <span className={styles.instrumentArtwork} aria-hidden="true">
+            <InstrumentIllustration instrument={instrument} />
+          </span>
+        )}
+        <span className={styles.counterLabel}>{label}</span>
+      </span>
       <div className={styles.counterControls}>
         <button
           type="button"
@@ -36,4 +48,3 @@ export function CounterRow({ label, value, onDecrease, onIncrease }: CounterRowP
     </div>
   );
 }
-

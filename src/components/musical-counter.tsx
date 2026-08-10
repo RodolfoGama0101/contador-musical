@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AppMark } from "@/components/app-mark";
+import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
 import { INSTRUMENT_FAMILIES, type InstrumentId } from "@/data/instruments";
@@ -183,7 +183,7 @@ export function MusicalCounter() {
   if (!hydrated) {
     return (
       <main className={styles.loadingScreen}>
-        <AppMark />
+        <CcbLogo />
         <p>Preparando o contador…</p>
       </main>
     );
@@ -194,7 +194,7 @@ export function MusicalCounter() {
       <header className={styles.stickyHeader}>
         <div className={styles.brandRow}>
           <div className={styles.brand}>
-            <AppMark />
+            <CcbLogo compact />
             <span>
               <strong>Contador Musical</strong>
               <small>Ensaio musical</small>
@@ -328,8 +328,8 @@ export function MusicalCounter() {
             </span>
           </summary>
           <div className={styles.familyBody}>
-            <CounterRow label="Organistas que tocaram" value={state.organists.played} onDecrease={() => adjustOrganists("played", -1)} onIncrease={() => adjustOrganists("played", 1)} />
-            <CounterRow label="Organistas que não tocaram" value={state.organists.didNotPlay} onDecrease={() => adjustOrganists("didNotPlay", -1)} onIncrease={() => adjustOrganists("didNotPlay", 1)} />
+            <CounterRow instrument="organ-played" label="Organistas que tocaram" value={state.organists.played} onDecrease={() => adjustOrganists("played", -1)} onIncrease={() => adjustOrganists("played", 1)} />
+            <CounterRow instrument="organ-waiting" label="Organistas que não tocaram" value={state.organists.didNotPlay} onDecrease={() => adjustOrganists("didNotPlay", -1)} onIncrease={() => adjustOrganists("didNotPlay", 1)} />
           </div>
         </details>
 

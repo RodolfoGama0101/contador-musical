@@ -49,6 +49,31 @@
   gap: 10px;
 }
 
+.ccbLogo {
+  display: inline-flex;
+  overflow: hidden;
+  width: 118px;
+  flex: 0 0 auto;
+  padding: 4px;
+  border: 1px solid rgba(3, 61, 96, 0.12);
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(3, 35, 53, 0.12);
+}
+
+.ccbLogo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ccbLogoCompact {
+  width: 62px;
+  padding: 3px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
 .brand > span:last-child {
   display: flex;
   min-width: 0;
@@ -482,6 +507,31 @@
   border-bottom: 1px solid #e7ebef;
 }
 
+.counterIdentity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+}
+
+.instrumentArtwork {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  color: var(--ccb-blue);
+  border: 1px solid #dbe4ea;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fff, #eef3f7);
+}
+
+.instrumentArtwork svg {
+  width: 34px;
+  height: 34px;
+}
+
 .counterRow:last-child {
   border-bottom: 0;
 }
@@ -754,7 +804,18 @@
   }
 
   .counterLabel {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .instrumentArtwork {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .instrumentArtwork svg {
+    width: 30px;
+    height: 30px;
   }
 }
 
