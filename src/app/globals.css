@@ -1,3 +1,13 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ccb-blue: var(--ccb-blue);
+  --color-ccb-gray: var(--ccb-gray);
+  --color-ccb-surface: var(--ccb-surface);
+  --color-ccb-red: var(--ccb-red);
+  --color-ccb-ink: var(--ccb-ink);
+}
+
 :root {
   --ccb-blue: #033d60;
   --ccb-gray: #d4d9e2;

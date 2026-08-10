@@ -4,6 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
+import { Button } from "@/components/ui/button";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 import { INSTRUMENT_FAMILIES, type InstrumentId } from "@/data/instruments";
 import { generateRehearsalPdf } from "@/lib/pdf";
 import {
@@ -18,6 +22,18 @@ import {
   type RehearsalState,
 } from "@/lib/rehearsal";
 import styles from "./musical-counter.module.css";
+import {
+  Building2,
+  CalendarDays,
+  Church,
+  Clock3,
+  FileDown,
+  LoaderCircle,
+  MapPin,
+  Music2,
+  RotateCcw,
+  UserRound,
+} from "lucide-react";
 
 const UF_OPTIONS = [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
@@ -184,7 +200,10 @@ export function MusicalCounter() {
     return (
       <main className={styles.loadingScreen}>
         <CcbLogo />
-        <p>Preparando o contador…</p>
+        <p className="flex items-center gap-2">
+          <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+          Preparando o contador…
+        </p>
       </main>
     );
   }
@@ -252,40 +271,33 @@ export function MusicalCounter() {
           </summary>
           <div className={styles.metadataForm}>
             <div className={styles.formGridTwo}>
-              <label>
-                <span>Data</span>
-                <input type="date" value={state.metadata.date} onChange={(event) => updateMetadata("date", event.target.value)} />
-              </label>
-              <label>
-                <span>Horário</span>
-                <input type="time" value={state.metadata.time} onChange={(event) => updateMetadata("time", event.target.value)} />
-              </label>
+              <Field id="date" label="Data" icon={CalendarDays}>
+                <Input id="date" type="date" value={state.metadata.date} onChange={(event) => updateMetadata("date", event.target.value)} />
+              </Field>
+              <Field id="time" label="Horário" icon={Clock3}>
+                <Input id="time" type="time" value={state.metadata.time} onChange={(event) => updateMetadata("time", event.target.value)} />
+              </Field>
             </div>
-            <label>
-              <span>Localidade</span>
-              <input type="text" autoComplete="organization" placeholder="Ex.: Jardim das Flores" value={state.metadata.locality} onChange={(event) => updateMetadata("locality", event.target.value)} />
-            </label>
+            <Field id="locality" label="Localidade" icon={Church}>
+              <Input id="locality" type="text" autoComplete="organization" placeholder="Ex.: Jardim das Flores" value={state.metadata.locality} onChange={(event) => updateMetadata("locality", event.target.value)} />
+            </Field>
             <div className={styles.formGridCity}>
-              <label>
-                <span>Cidade</span>
-                <input type="text" autoComplete="address-level2" placeholder="Cidade" value={state.metadata.city} onChange={(event) => updateMetadata("city", event.target.value)} />
-              </label>
-              <label>
-                <span>UF</span>
-                <select value={state.metadata.uf} onChange={(event) => updateMetadata("uf", event.target.value)} aria-label="Estado">
+              <Field id="city" label="Cidade" icon={MapPin}>
+                <Input id="city" type="text" autoComplete="address-level2" placeholder="Cidade" value={state.metadata.city} onChange={(event) => updateMetadata("city", event.target.value)} />
+              </Field>
+              <Field id="uf" label="UF">
+                <Select id="uf" value={state.metadata.uf} onChange={(event) => updateMetadata("uf", event.target.value)} aria-label="Estado">
                   <option value="">UF</option>
                   {UF_OPTIONS.map((uf) => <option key={uf}>{uf}</option>)}
-                </select>
-              </label>
+                </Select>
+              </Field>
             </div>
-            <label>
-              <span>Regional</span>
-              <input type="text" placeholder="Regional musical" value={state.metadata.regional} onChange={(event) => updateMetadata("regional", event.target.value)} />
-            </label>
-            <label>
-              <span>Responsável pela contagem</span>
-              <input type="text" autoComplete="name" placeholder="Nome completo" value={state.metadata.responsible} onChange={(event) => updateMetadata("responsible", event.target.value)} />
-            </label>
+            <Field id="regional" label="Regional" icon={Building2}>
+              <Input id="regional" type="text" placeholder="Regional musical" value={state.metadata.regional} onChange={(event) => updateMetadata("regional", event.target.value)} />
+            </Field>
+            <Field id="responsible" label="Responsável pela contagem" icon={UserRound}>
+              <Input id="responsible" type="text" autoComplete="name" placeholder="Nome completo" value={state.metadata.responsible} onChange={(event) => updateMetadata("responsible", event.target.value)} />
+            </Field>
           </div>
         </details>
 
@@ -316,7 +328,7 @@ export function MusicalCounter() {
         <details className={styles.familyCard} id="family-organists">
           <summary className={styles.familySummary}>
             <span className={styles.familyIdentity}>
-              <span className={`${styles.familyBadge} ${styles.organBadge}`} aria-hidden="true">♪</span>
+              <span className={`${styles.familyBadge} ${styles.organBadge}`} aria-hidden="true"><Music2 /></span>
               <span>
                 <strong>Órgão Eletrônico</strong>
                 <small>Organistas presentes</small>
@@ -345,23 +357,24 @@ export function MusicalCounter() {
       </main>
 
       <footer className={styles.actionBar}>
-        <button type="button" className={styles.resetButton} onClick={requestReset}>
-          <span aria-hidden="true">↻</span> Novo ensaio
-        </button>
-        <button type="button" className={styles.pdfButton} onClick={createPdf} disabled={isGenerating}>
-          <span aria-hidden="true">⇩</span> {isGenerating ? "Criando PDF…" : "Gerar PDF"}
-        </button>
+        <Button variant="secondary" className={styles.resetButton} onClick={requestReset}>
+          <RotateCcw aria-hidden="true" /> Novo ensaio
+        </Button>
+        <Button className={styles.pdfButton} onClick={createPdf} disabled={isGenerating}>
+          {isGenerating ? <LoaderCircle className="animate-spin" aria-hidden="true" /> : <FileDown aria-hidden="true" />}
+          {isGenerating ? "Criando PDF…" : "Gerar PDF"}
+        </Button>
       </footer>
 
       {confirmReset && (
         <div className={styles.modalBackdrop} role="presentation">
           <section className={styles.confirmDialog} role="dialog" aria-modal="true" aria-labelledby="reset-title">
-            <span className={styles.dialogIcon} aria-hidden="true">↻</span>
+            <span className={styles.dialogIcon} aria-hidden="true"><RotateCcw /></span>
             <h2 id="reset-title">Iniciar um novo ensaio?</h2>
             <p>As contagens atuais serão apagadas deste aparelho. Gere o PDF antes, se precisar guardar o resumo.</p>
             <div className={styles.dialogActions}>
-              <button type="button" onClick={() => setConfirmReset(false)}>Cancelar</button>
-              <button type="button" className={styles.confirmResetButton} onClick={resetRehearsal}>Iniciar novo</button>
+              <Button variant="secondary" onClick={() => setConfirmReset(false)}>Cancelar</Button>
+              <Button variant="danger" className={styles.confirmResetButton} onClick={resetRehearsal}>Iniciar novo</Button>
             </div>
           </section>
         </div>

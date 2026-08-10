@@ -3,6 +3,8 @@ import {
   InstrumentIllustration,
   type InstrumentArtworkId,
 } from "@/components/instrument-illustration";
+import { Button } from "@/components/ui/button";
+import { Minus, Plus } from "lucide-react";
 
 type CounterRowProps = {
   label: string;
@@ -24,26 +26,25 @@ export function CounterRow({ label, value, onDecrease, onIncrease, instrument }:
         <span className={styles.counterLabel}>{label}</span>
       </span>
       <div className={styles.counterControls}>
-        <button
-          type="button"
+        <Button
+          variant="secondary"
           className={styles.decreaseButton}
           onClick={onDecrease}
           disabled={value === 0}
           aria-label={`Diminuir ${label}`}
         >
-          <span aria-hidden="true">−</span>
-        </button>
+          <Minus aria-hidden="true" />
+        </Button>
         <output className={styles.counterValue} aria-label={`${label}: ${value}`}>
           {value}
         </output>
-        <button
-          type="button"
+        <Button
           className={styles.increaseButton}
           onClick={onIncrease}
           aria-label={`Aumentar ${label}`}
         >
-          <span aria-hidden="true">+</span>
-        </button>
+          <Plus aria-hidden="true" />
+        </Button>
       </div>
     </div>
   );

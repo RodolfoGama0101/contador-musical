@@ -322,39 +322,6 @@
   background: #fbfcfe;
 }
 
-.metadataForm label {
-  display: grid;
-  gap: 6px;
-  color: var(--ccb-blue);
-  font-size: 10px;
-  font-weight: 800;
-}
-
-.metadataForm input,
-.metadataForm select {
-  width: 100%;
-  min-height: 48px;
-  padding: 0 12px;
-  color: var(--ccb-ink);
-  border: 1px solid #c6d0db;
-  border-radius: 9px;
-  outline: none;
-  background: white;
-  font: inherit;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.metadataForm input:focus,
-.metadataForm select:focus {
-  border-color: var(--ccb-blue);
-  box-shadow: 0 0 0 3px rgba(3, 61, 96, 0.1);
-}
-
-.metadataForm input::placeholder {
-  color: #929dab;
-}
-
 .formGridTwo,
 .formGridCity {
   display: grid;
@@ -470,6 +437,11 @@
   font-size: 20px;
 }
 
+.organBadge svg {
+  width: 21px;
+  height: 21px;
+}
+
 .familyTotal {
   display: flex;
   min-width: 64px;
@@ -557,9 +529,7 @@
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  border: 0;
-  border-radius: 12px;
-  cursor: pointer;
+  padding: 0;
   font-size: 27px;
   line-height: 1;
   -webkit-tap-highlight-color: transparent;
@@ -567,9 +537,7 @@
 }
 
 .decreaseButton {
-  color: var(--ccb-blue);
-  border: 1px solid #c6d0db;
-  background: white;
+  min-width: 48px;
 }
 
 .decreaseButton:disabled {
@@ -580,9 +548,13 @@
 }
 
 .increaseButton {
-  color: white;
-  background: var(--ccb-blue);
-  box-shadow: 0 4px 9px rgba(3, 61, 96, 0.18);
+  min-width: 48px;
+}
+
+.decreaseButton svg,
+.increaseButton svg {
+  width: 22px;
+  height: 22px;
 }
 
 .decreaseButton:active:not(:disabled),
@@ -671,32 +643,21 @@
 }
 
 .actionBar button {
-  display: inline-flex;
   min-height: 54px;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  border-radius: 12px;
-  cursor: pointer;
   font-size: 12px;
-  font-weight: 800;
 }
 
-.actionBar button span {
-  font-size: 20px;
+.actionBar button svg {
+  width: 19px;
+  height: 19px;
 }
 
 .resetButton {
-  color: var(--ccb-blue);
-  border: 1px solid #c4ced8;
-  background: white;
+  min-width: 0;
 }
 
 .pdfButton {
-  color: white;
-  border: 1px solid var(--ccb-blue);
-  background: var(--ccb-blue);
-  box-shadow: 0 5px 12px rgba(3, 61, 96, 0.2);
+  min-width: 0;
 }
 
 .pdfButton:disabled {
@@ -738,6 +699,11 @@
   font-size: 25px;
 }
 
+.dialogIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .confirmDialog h2 {
   color: var(--ccb-blue);
   font-size: 19px;
@@ -758,18 +724,7 @@
 
 .dialogActions button {
   min-height: 49px;
-  color: var(--ccb-blue);
-  border: 1px solid #c4ced8;
-  border-radius: 10px;
-  background: white;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.dialogActions .confirmResetButton {
-  color: white;
-  border-color: var(--ccb-red);
-  background: var(--ccb-red);
+  padding-inline: 8px;
 }
 
 @media (min-width: 680px) {
