@@ -5,14 +5,19 @@ PWA mobile-first para registrar a quantidade de músicos presentes em ensaios da
 ## Recursos
 
 - Contagem rápida por instrumento, com subtotais de Cordas, Madeiras e Metais.
+- Ilustrações vetoriais para os instrumentos e logo institucional da CCB no cabeçalho.
 - Saxofones incluídos diretamente em Madeiras.
 - Registro separado de organistas que tocaram e que não tocaram.
 - Identificação do ensaio e cálculo automático dos totais.
 - Persistência do ensaio atual em `localStorage`.
 - Instalação como PWA e uso offline após o primeiro acesso.
-- Relatório PDF A4 com compartilhamento nativo ou download.
+- Relatório PDF A4 resumido em uma página, com compartilhamento nativo ou download.
 
 O catálogo local utiliza exclusivamente os instrumentos presentes no [MOO Digital](https://moo.congregacao.org.br/).
+
+## Interface
+
+A aplicação combina Tailwind CSS com componentes React reutilizáveis para campos, seletores e botões. A identidade mantém as cores institucionais e usa uma cópia local da logo disponibilizada em uma propriedade oficial da CCB, permitindo a exibição offline.
 
 ## Desenvolvimento
 
