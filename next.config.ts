@@ -9,10 +9,20 @@ const withSerwist = withSerwistInit({
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  allowedDevOrigins: ["192.168.18.10"],
+  async headers() {
+    return [
+      {
+        source: "/sw.js",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-cache, no-store, must-revalidate",
+          },
+        ],
+      },
+    ];
+  },
 };
-
-module.exports = {
-  allowedDevOrigins: ['192.168.18.10'],
-}
 
 export default withSerwist(nextConfig);

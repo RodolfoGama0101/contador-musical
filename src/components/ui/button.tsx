@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import styles from "./ui.module.css";
 
 type ButtonVariant = "primary" | "secondary" | "danger" | "quiet";
 
@@ -17,12 +18,21 @@ const variants: Record<ButtonVariant, string> = {
   quiet: "border-transparent bg-transparent text-[#033d60] hover:bg-[#033d60]/5",
 };
 
+const fallbackVariants: Record<ButtonVariant, string> = {
+  primary: styles.primary,
+  secondary: styles.secondary,
+  danger: styles.danger,
+  quiet: styles.quiet,
+};
+
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", type = "button", ...props }, ref) => (
     <button
       ref={ref}
       type={type}
       className={cn(
+        styles.button,
+        fallbackVariants[variant],
         "inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border px-4 text-sm font-extrabold transition duration-150 outline-none select-none touch-manipulation focus-visible:ring-4 focus-visible:ring-[#d91f26]/25 disabled:pointer-events-none disabled:opacity-55 active:scale-[.98]",
         variants[variant],
         className,
