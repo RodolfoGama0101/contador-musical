@@ -494,14 +494,14 @@
   align-items: center;
   justify-content: center;
   color: var(--ccb-blue);
-  border: 1px solid #dbe4ea;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #fff, #eef3f7);
+  border: 1px solid #d8e1e8;
+  border-radius: 11px;
+  background: #f7fafc;
 }
 
 .instrumentArtwork svg {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
 }
 
 .counterRow:last-child {
@@ -769,8 +769,8 @@
   }
 
   .instrumentArtwork svg {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 }
 

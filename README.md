@@ -19,6 +19,8 @@ O catálogo local utiliza exclusivamente os instrumentos presentes no [MOO Digit
 
 A aplicação combina Tailwind CSS com componentes React reutilizáveis para campos, seletores e botões. A identidade mantém as cores institucionais e usa uma cópia local da logo disponibilizada em uma propriedade oficial da CCB, permitindo a exibição offline.
 
+Os pictogramas de instrumentos são fornecidos por [Qlementine Icons](https://icon-sets.iconify.design/qlementine-icons/) e [Game Icons](https://game-icons.net/), distribuídos no aplicativo por meio do Iconify. Game Icons é utilizado sob a licença CC BY 3.0.
+
 ## Desenvolvimento
 
 Requer Node.js 20.9 ou mais recente.

@@ -1,8 +1,8 @@
 import styles from "./musical-counter.module.css";
 import {
-  InstrumentIllustration,
-  type InstrumentArtworkId,
-} from "@/components/instrument-illustration";
+  InstrumentIcon,
+  type InstrumentIconId,
+} from "@/components/instrument-icon";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
 
@@ -11,7 +11,7 @@ type CounterRowProps = {
   value: number;
   onDecrease: () => void;
   onIncrease: () => void;
-  instrument?: InstrumentArtworkId;
+  instrument?: InstrumentIconId;
 };
 
 export function CounterRow({ label, value, onDecrease, onIncrease, instrument }: CounterRowProps) {
@@ -19,8 +19,8 @@ export function CounterRow({ label, value, onDecrease, onIncrease, instrument }:
     <div className={styles.counterRow}>
       <span className={styles.counterIdentity}>
         {instrument && (
-          <span className={styles.instrumentArtwork} aria-hidden="true">
-            <InstrumentIllustration instrument={instrument} />
+          <span className={styles.instrumentArtwork} data-icon-source="iconify" aria-hidden="true">
+            <InstrumentIcon instrument={instrument} />
           </span>
         )}
         <span className={styles.counterLabel}>{label}</span>
