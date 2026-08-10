@@ -25,6 +25,6 @@ describe("PDF do ensaio", () => {
     const result = await generateRehearsalPdf(state);
     expect(result.blob.type).toBe("application/pdf");
     expect(result.blob.size).toBeGreaterThan(2_000);
+    expect(result.pageCount).toBe(1);
   });
 });
-
