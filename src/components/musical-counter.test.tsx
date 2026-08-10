@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MusicalCounter } from "@/components/musical-counter";
+import { ALL_INSTRUMENTS } from "@/data/instruments";
 import { STORAGE_KEY } from "@/lib/rehearsal";
 
 describe("Contador Musical", () => {
@@ -67,5 +68,14 @@ describe("Contador Musical", () => {
     const validation = await screen.findByText(/Preencha antes de gerar o PDF/);
     expect(validation).toHaveTextContent("Localidade");
     expect(validation).toHaveTextContent("Responsável");
+  });
+
+  it("usa ícones de biblioteca em todas as linhas de contagem", async () => {
+    const { container } = render(<MusicalCounter />);
+    await screen.findByRole("button", { name: "Aumentar Violino" });
+
+    expect(
+      container.querySelectorAll('[data-icon-source="iconify"]'),
+    ).toHaveLength(ALL_INSTRUMENTS.length + 2);
   });
 });
