@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Contador Musical
 
-## Getting Started
+PWA mobile-first para registrar a quantidade de músicos presentes em ensaios da Congregação Cristã no Brasil. Os dados ficam somente no navegador, sem banco de dados ou envio para servidores.
 
-First, run the development server:
+## Recursos
+
+- Contagem rápida por instrumento, com subtotais de Cordas, Madeiras e Metais.
+- Saxofones incluídos diretamente em Madeiras.
+- Registro separado de organistas que tocaram e que não tocaram.
+- Identificação do ensaio e cálculo automático dos totais.
+- Persistência do ensaio atual em `localStorage`.
+- Instalação como PWA e uso offline após o primeiro acesso.
+- Relatório PDF A4 com compartilhamento nativo ou download.
+
+O catálogo local utiliza exclusivamente os instrumentos presentes no [MOO Digital](https://moo.congregacao.org.br/).
+
+## Desenvolvimento
+
+Requer Node.js 20.9 ou mais recente.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verificações
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm test
+npx tsc --noEmit
+npm run build
+```
 
-## Learn More
+Para conferir a instalação e o funcionamento offline, use uma compilação de produção:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O service worker é desabilitado durante `npm run dev` para não interferir na atualização dos arquivos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Armazenamento
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O ensaio em andamento é salvo na chave `contador-musical:ensaio-atual:v1`. A opção **Novo ensaio** substitui esse registro após confirmação; o PDF é o registro permanente.

@@ -1,13 +1,12 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --ccb-blue: #033d60;
+  --ccb-gray: #d4d9e2;
+  --ccb-surface: #f4f5f8;
+  --ccb-red: #d91f26;
+  --ccb-ink: #201e1e;
+  --ccb-text: #645f77;
+  --ccb-border: #dce1e7;
+  --card-shadow: 0 5px 15px rgba(3, 35, 53, 0.065);
 }
 
 html {
@@ -22,11 +21,9 @@ body {
 
 body {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ccb-ink);
+  background: var(--ccb-surface);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,8 +39,18 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ccb-blue);
 }
