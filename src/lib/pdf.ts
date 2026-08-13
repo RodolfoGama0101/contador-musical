@@ -183,6 +183,11 @@ export const generateRehearsalPdf = async (
       columnStyles: {
         1: { halign: "center", cellWidth: 14, fontStyle: "bold" },
       },
+      didParseCell: (data) => {
+        if (data.section === "foot" && data.column.index === 1) {
+          data.cell.styles.halign = "center";
+        }
+      },
       margin: {
         left: column.x,
         right: pageWidth - column.x - column.width,
@@ -230,6 +235,11 @@ export const generateRehearsalPdf = async (
     },
     columnStyles: {
       1: { halign: "center", cellWidth: 17, fontStyle: "bold" },
+    },
+    didParseCell: (data) => {
+      if (data.section === "foot" && data.column.index === 1) {
+        data.cell.styles.halign = "center";
+      }
     },
     margin: { left: 12, right: 84, bottom: 13 },
     tableWidth: 114,
