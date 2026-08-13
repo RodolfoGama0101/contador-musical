@@ -260,11 +260,11 @@ export const generateRehearsalPdf = async (
     doc.roundedRect(cardX, card.y, cardWidth, 14, 1.2, 1.2, "FD");
     doc.setTextColor(...(card.dark ? WHITE : DARK_GRAY));
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(6.4);
-    doc.text(card.label, cardX + 4, card.y + 5.5);
+    doc.setFontSize(6.8);
+    doc.text(card.label, cardX + 4, card.y + 8.6);
     doc.setTextColor(...(card.dark ? WHITE : INK));
-    doc.setFontSize(card.dark ? 13 : 11);
-    doc.text(String(card.value), cardX + cardWidth - 5, card.y + 9.8, {
+    doc.setFontSize(card.dark ? 15 : 13.5);
+    doc.text(String(card.value), cardX + cardWidth - 5, card.y + 9.3, {
       align: "right",
     });
   });
