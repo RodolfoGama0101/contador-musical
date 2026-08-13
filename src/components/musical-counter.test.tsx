@@ -55,7 +55,7 @@ describe("Contador Musical", () => {
     await user.click(await screen.findByRole("button", { name: "Aumentar Violino" }));
     await user.click(screen.getByRole("button", { name: /Novo ensaio/i }));
 
-    expect(screen.getByRole("dialog", { name: "Iniciar um novo ensaio?" })).toBeInTheDocument();
+    expect(screen.getByRole("alertdialog", { name: "Iniciar um novo ensaio?" })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Iniciar novo" }));
     expect(screen.getByLabelText("Violino: 0")).toHaveTextContent("0");
   });

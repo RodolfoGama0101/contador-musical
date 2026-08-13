@@ -31,7 +31,8 @@ export function CounterRow({ label, value, onDecrease, onIncrease, instrument }:
       </span>
       <div className={styles.counterControls}>
         <Button
-          variant="secondary"
+          variant="outline"
+          size="icon-lg"
           className={styles.decreaseButton}
           onClick={onDecrease}
           disabled={value === 0}
@@ -43,6 +44,7 @@ export function CounterRow({ label, value, onDecrease, onIncrease, instrument }:
           {value}
         </output>
         <Button
+          size="icon-lg"
           className={styles.increaseButton}
           onClick={onIncrease}
           aria-label={`Aumentar ${label}`}

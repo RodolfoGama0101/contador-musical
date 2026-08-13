@@ -338,6 +338,39 @@
   grid-template-columns: minmax(0, 1fr) 82px;
 }
 
+.shadcnField {
+  gap: 6px;
+}
+
+.shadcnFieldLabel {
+  min-height: 16px;
+  padding-inline: 2px;
+  color: var(--ccb-blue);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.shadcnFieldLabel svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  color: var(--ccb-red);
+}
+
+.shadcnField :global([data-slot="input"]),
+.ufSelectTrigger {
+  height: 48px;
+  border-radius: 12px;
+  background: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.ufSelectTrigger {
+  width: 100%;
+}
+
 .sectionHeading {
   display: flex;
   align-items: flex-end;
@@ -682,22 +715,12 @@
   cursor: wait;
 }
 
-.modalBackdrop {
-  position: fixed;
-  z-index: 50;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(4, 24, 36, 0.62);
-  backdrop-filter: blur(5px);
-}
-
 .confirmDialog {
   width: min(100%, 390px);
+  max-width: 390px;
   padding: 24px 20px 18px;
   border-radius: 17px;
+  border-color: var(--ccb-border);
   background: white;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
   text-align: center;
@@ -721,12 +744,12 @@
   height: 24px;
 }
 
-.confirmDialog h2 {
+.confirmDialog :global([data-slot="alert-dialog-title"]) {
   color: var(--ccb-blue);
   font-size: 19px;
 }
 
-.confirmDialog p {
+.confirmDialog :global([data-slot="alert-dialog-description"]) {
   margin: 9px 0 20px;
   color: var(--ccb-text);
   font-size: 12px;

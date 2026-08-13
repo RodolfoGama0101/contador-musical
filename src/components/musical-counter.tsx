@@ -4,10 +4,27 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Field } from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { INSTRUMENT_FAMILIES, type InstrumentId } from "@/data/instruments";
 import { generateRehearsalPdf } from "@/lib/pdf";
 import {
@@ -269,24 +286,41 @@ export function MusicalCounter() {
           </summary>
           <div className={styles.metadataForm}>
             <div className={styles.formGridTwo}>
-              <Field id="date" label="Data" icon={CalendarDays}>
+              <Field className={styles.shadcnField}>
+                <FieldLabel htmlFor="date" className={styles.shadcnFieldLabel}>
+                  <CalendarDays aria-hidden="true" />Data
+                </FieldLabel>
                 <Input id="date" type="date" value={state.metadata.date} onChange={(event) => updateMetadata("date", event.target.value)} />
               </Field>
-              <Field id="time" label="Horário" icon={Clock3}>
+              <Field className={styles.shadcnField}>
+                <FieldLabel htmlFor="time" className={styles.shadcnFieldLabel}>
+                  <Clock3 aria-hidden="true" />Horário
+                </FieldLabel>
                 <Input id="time" type="time" value={state.metadata.time} onChange={(event) => updateMetadata("time", event.target.value)} />
               </Field>
             </div>
-            <Field id="locality" label="Localidade" icon={Church}>
+            <Field className={styles.shadcnField}>
+              <FieldLabel htmlFor="locality" className={styles.shadcnFieldLabel}>
+                <Church aria-hidden="true" />Localidade
+              </FieldLabel>
               <Input id="locality" type="text" autoComplete="organization" placeholder="Ex.: Jardim das Flores" value={state.metadata.locality} onChange={(event) => updateMetadata("locality", event.target.value)} />
             </Field>
             <div className={styles.formGridCity}>
-              <Field id="city" label="Cidade" icon={MapPin}>
+              <Field className={styles.shadcnField}>
+                <FieldLabel htmlFor="city" className={styles.shadcnFieldLabel}>
+                  <MapPin aria-hidden="true" />Cidade
+                </FieldLabel>
                 <Input id="city" type="text" autoComplete="address-level2" placeholder="Cidade" value={state.metadata.city} onChange={(event) => updateMetadata("city", event.target.value)} />
               </Field>
-              <Field id="uf" label="UF">
-                <Select id="uf" value={state.metadata.uf} onChange={(event) => updateMetadata("uf", event.target.value)} aria-label="Estado">
-                  <option value="">UF</option>
-                  {UF_OPTIONS.map((uf) => <option key={uf}>{uf}</option>)}
+              <Field className={styles.shadcnField}>
+                <FieldLabel htmlFor="uf" className={styles.shadcnFieldLabel}>UF</FieldLabel>
+                <Select value={state.metadata.uf} onValueChange={(value) => updateMetadata("uf", value)}>
+                  <SelectTrigger id="uf" aria-label="Estado" className={styles.ufSelectTrigger}>
+                    <SelectValue placeholder="UF" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {UF_OPTIONS.map((uf) => <SelectItem key={uf} value={uf}>{uf}</SelectItem>)}
+                  </SelectContent>
                 </Select>
               </Field>
             </div>
@@ -349,28 +383,28 @@ export function MusicalCounter() {
       </main>
 
       <footer className={styles.actionBar}>
-        <Button variant="secondary" className={styles.resetButton} onClick={requestReset}>
+        <Button variant="outline" size="lg" className={styles.resetButton} onClick={requestReset}>
           <RotateCcw aria-hidden="true" /> Novo ensaio
         </Button>
-        <Button className={styles.pdfButton} onClick={createPdf} disabled={isGenerating}>
+        <Button size="lg" className={styles.pdfButton} onClick={createPdf} disabled={isGenerating}>
           {isGenerating ? <LoaderCircle className="animate-spin" aria-hidden="true" /> : <FileDown aria-hidden="true" />}
           {isGenerating ? "Criando PDF…" : "Gerar PDF"}
         </Button>
       </footer>
 
-      {confirmReset && (
-        <div className={styles.modalBackdrop} role="presentation">
-          <section className={styles.confirmDialog} role="dialog" aria-modal="true" aria-labelledby="reset-title">
-            <span className={styles.dialogIcon} aria-hidden="true"><RotateCcw /></span>
-            <h2 id="reset-title">Iniciar um novo ensaio?</h2>
-            <p>As contagens atuais serão apagadas deste aparelho. Gere o PDF antes, se precisar guardar o resumo.</p>
-            <div className={styles.dialogActions}>
-              <Button variant="secondary" onClick={() => setConfirmReset(false)}>Cancelar</Button>
-              <Button variant="danger" className={styles.confirmResetButton} onClick={resetRehearsal}>Iniciar novo</Button>
-            </div>
-          </section>
-        </div>
-      )}
+      <AlertDialog open={confirmReset} onOpenChange={setConfirmReset}>
+        <AlertDialogContent className={styles.confirmDialog}>
+          <AlertDialogHeader>
+            <AlertDialogMedia className={styles.dialogIcon}><RotateCcw aria-hidden="true" /></AlertDialogMedia>
+            <AlertDialogTitle>Iniciar um novo ensaio?</AlertDialogTitle>
+            <AlertDialogDescription>As contagens atuais serão apagadas deste aparelho. Gere o PDF antes, se precisar guardar o resumo.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className={styles.dialogActions}>
+              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogAction variant="destructive" className={styles.confirmResetButton} onClick={resetRehearsal}>Iniciar novo</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
