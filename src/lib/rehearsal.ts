@@ -14,8 +14,6 @@ export type RehearsalMetadata = {
   locality: string;
   city: string;
   uf: string;
-  regional: string;
-  responsible: string;
 };
 
 export type RehearsalState = {
@@ -68,8 +66,6 @@ export const createNewRehearsal = (now = new Date()): RehearsalState => {
       locality: "",
       city: "",
       uf: "",
-      regional: "",
-      responsible: "",
     },
     counts: createEmptyCounts(),
     organists: { played: 0, didNotPlay: 0 },
@@ -107,10 +103,10 @@ export const hasMeaningfulData = (state: RehearsalState) => {
     Object.values(state.counts).some((count) => count > 0) ||
     state.organists.played > 0 ||
     state.organists.didNotPlay > 0;
-  const { locality, city, uf, regional, responsible } = state.metadata;
+  const { locality, city, uf } = state.metadata;
   return (
     hasCounts ||
-    [locality, city, uf, regional, responsible].some(
+    [locality, city, uf].some(
       (value) => value.trim().length > 0,
     )
   );
@@ -123,8 +119,6 @@ export const missingMetadataFields = (metadata: RehearsalMetadata) => {
     locality: "Localidade",
     city: "Cidade",
     uf: "UF",
-    regional: "Regional",
-    responsible: "Responsável",
   };
 
   return (Object.keys(labels) as (keyof RehearsalMetadata)[])
@@ -146,8 +140,6 @@ export const normalizeStoredState = (value: unknown): RehearsalState | null => {
     "locality",
     "city",
     "uf",
-    "regional",
-    "responsible",
   ];
   if (metadataKeys.some((key) => typeof metadata[key] !== "string")) {
     return null;

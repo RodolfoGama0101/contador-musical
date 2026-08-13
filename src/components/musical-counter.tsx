@@ -23,7 +23,6 @@ import {
 } from "@/lib/rehearsal";
 import styles from "./musical-counter.module.css";
 import {
-  Building2,
   CalendarDays,
   Church,
   Clock3,
@@ -32,7 +31,6 @@ import {
   MapPin,
   Music2,
   RotateCcw,
-  UserRound,
 } from "lucide-react";
 
 const UF_OPTIONS = [
@@ -292,12 +290,6 @@ export function MusicalCounter() {
                 </Select>
               </Field>
             </div>
-            <Field id="regional" label="Regional" icon={Building2}>
-              <Input id="regional" type="text" placeholder="Regional musical" value={state.metadata.regional} onChange={(event) => updateMetadata("regional", event.target.value)} />
-            </Field>
-            <Field id="responsible" label="Responsável pela contagem" icon={UserRound}>
-              <Input id="responsible" type="text" autoComplete="name" placeholder="Nome completo" value={state.metadata.responsible} onChange={(event) => updateMetadata("responsible", event.target.value)} />
-            </Field>
           </div>
         </details>
 

@@ -67,7 +67,18 @@ describe("Contador Musical", () => {
 
     const validation = await screen.findByText(/Preencha antes de gerar o PDF/);
     expect(validation).toHaveTextContent("Localidade");
-    expect(validation).toHaveTextContent("Responsável");
+    expect(validation).not.toHaveTextContent("Regional");
+    expect(validation).not.toHaveTextContent("Responsável");
+  });
+
+  it("não exibe os campos Regional e Responsável pela contagem", async () => {
+    render(<MusicalCounter />);
+    await screen.findByRole("button", { name: "Aumentar Violino" });
+
+    expect(screen.queryByLabelText("Regional")).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("Responsável pela contagem"),
+    ).not.toBeInTheDocument();
   });
 
   it("usa as imagens geradas nos instrumentos e mantém o ícone do órgão", async () => {

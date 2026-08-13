@@ -11,8 +11,6 @@ describe("PDF do ensaio", () => {
       locality: "Jardim São José",
       city: "São Paulo",
       uf: "SP",
-      regional: "Brás",
-      responsible: "Responsável",
     };
     state.counts.violin = 10;
     state.counts["baritone-sax"] = 2;

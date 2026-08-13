@@ -53,6 +53,20 @@ describe("estado e totais", () => {
     expect(normalizeStoredState(invalid)).toBeNull();
   });
 
+  it("migra o formato salvo antigo descartando campos removidos", () => {
+    const state = createNewRehearsal();
+    const legacyState = {
+      ...state,
+      metadata: {
+        ...state.metadata,
+        regional: "Brás",
+        responsible: "Responsável",
+      },
+    };
+
+    expect(normalizeStoredState(legacyState)?.metadata).toEqual(state.metadata);
+  });
+
   it("inicia um ensaio seguro quando o JSON salvo está corrompido", () => {
     const storage = {
       getItem: (key: string) => (key === STORAGE_KEY ? "{inválido" : null),
@@ -63,4 +77,3 @@ describe("estado e totais", () => {
     expect(calculateTotals(restored.state).grand).toBe(0);
   });
 });
-
