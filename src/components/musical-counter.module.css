@@ -500,10 +500,10 @@
   align-items: center;
   justify-content: center;
   color: var(--ccb-blue);
-  border: 1px solid #291006;
+  border: 1px solid #d8e1e8;
   border-radius: 11px;
-  background: #050301;
-  box-shadow: 0 3px 9px rgba(51, 20, 5, 0.18);
+  background: linear-gradient(145deg, #ffffff, #f3f7fa);
+  box-shadow: 0 3px 9px rgba(3, 61, 96, 0.1);
 }
 
 .instrumentArtwork img,
