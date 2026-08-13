@@ -70,12 +70,23 @@ describe("Contador Musical", () => {
     expect(validation).toHaveTextContent("Responsável");
   });
 
-  it("usa ícones de biblioteca em todas as linhas de contagem", async () => {
+  it("usa as imagens geradas nos instrumentos e mantém o ícone do órgão", async () => {
     const { container } = render(<MusicalCounter />);
     await screen.findByRole("button", { name: "Aumentar Violino" });
 
     expect(
+      container.querySelectorAll('[data-icon-source="generated"]'),
+    ).toHaveLength(ALL_INSTRUMENTS.length);
+    expect(
       container.querySelectorAll('[data-icon-source="iconify"]'),
-    ).toHaveLength(ALL_INSTRUMENTS.length + 2);
+    ).toHaveLength(2);
+
+    for (const instrument of ALL_INSTRUMENTS) {
+      expect(
+        container.querySelector(
+          `img[src="/icons/instruments/${instrument.id}.png"]`,
+        ),
+      ).toBeInTheDocument();
+    }
   });
 });

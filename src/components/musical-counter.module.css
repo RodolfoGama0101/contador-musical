@@ -493,20 +493,29 @@
 
 .instrumentArtwork {
   display: inline-flex;
+  overflow: hidden;
   width: 42px;
   height: 42px;
   flex: 0 0 42px;
   align-items: center;
   justify-content: center;
   color: var(--ccb-blue);
-  border: 1px solid #d8e1e8;
+  border: 1px solid #291006;
   border-radius: 11px;
-  background: #f7fafc;
+  background: #050301;
+  box-shadow: 0 3px 9px rgba(51, 20, 5, 0.18);
 }
 
+.instrumentArtwork img,
 .instrumentArtwork svg {
   width: 28px;
   height: 28px;
+}
+
+.instrumentArtwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .counterRow:last-child {
@@ -766,9 +775,15 @@
     flex-basis: 36px;
   }
 
+  .instrumentArtwork img,
   .instrumentArtwork svg {
     width: 25px;
     height: 25px;
+  }
+
+  .instrumentArtwork img {
+    width: 100%;
+    height: 100%;
   }
 }
 

@@ -15,11 +15,15 @@ type CounterRowProps = {
 };
 
 export function CounterRow({ label, value, onDecrease, onIncrease, instrument }: CounterRowProps) {
+  const iconSource = instrument?.startsWith("organ-")
+    ? "iconify"
+    : "generated";
+
   return (
     <div className={styles.counterRow}>
       <span className={styles.counterIdentity}>
         {instrument && (
-          <span className={styles.instrumentArtwork} data-icon-source="iconify" aria-hidden="true">
+          <span className={styles.instrumentArtwork} data-icon-source={iconSource} aria-hidden="true">
             <InstrumentIcon instrument={instrument} />
           </span>
         )}
