@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { CounterRow } from "@/components/counter-row";
+import { InstrumentIcon } from "@/components/instrument-icon";
 import type { InstrumentId } from "@/data/instruments";
+import { ChevronDown } from "lucide-react";
 import styles from "./musical-counter.module.css";
 
 type FamilySectionProps = {
   id: string;
   label: string;
-  badge: string;
   instruments: readonly { id: InstrumentId; label: string }[];
   counts: Record<InstrumentId, number>;
   subtotal: number;
@@ -19,7 +20,6 @@ type FamilySectionProps = {
 export function FamilySection({
   id,
   label,
-  badge,
   instruments,
   counts,
   subtotal,
@@ -37,7 +37,9 @@ export function FamilySection({
     >
       <summary className={styles.familySummary}>
         <span className={styles.familyIdentity}>
-          <span className={styles.familyBadge} aria-hidden="true">{badge}</span>
+          <span className={styles.familyBadge} aria-hidden="true">
+            <InstrumentIcon instrument={instruments[0].id} />
+          </span>
           <span>
             <strong>{label}</strong>
             <small>{instruments.length} instrumentos</small>
@@ -47,6 +49,7 @@ export function FamilySection({
           <small>Subtotal</small>
           <strong>{subtotal}</strong>
         </span>
+        <ChevronDown className={styles.familyChevron} aria-hidden="true" />
       </summary>
       <div className={styles.familyBody}>
         {instruments.map((instrument) => (

@@ -41,6 +41,8 @@ import {
 import styles from "./musical-counter.module.css";
 import {
   CalendarDays,
+  CheckCircle2,
+  ChevronDown,
   Church,
   Clock3,
   FileDown,
@@ -55,8 +57,6 @@ const UF_OPTIONS = [
   "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO",
   "RR", "SC", "SP", "SE", "TO",
 ];
-
-const FAMILY_BADGES = { strings: "C", woodwinds: "M", brass: "Mt" } as const;
 
 const downloadBlob = (blob: Blob, filename: string) => {
   const url = URL.createObjectURL(blob);
@@ -276,12 +276,22 @@ export function MusicalCounter() {
           open={!completedMetadata}
         >
           <summary className={styles.metadataSummary}>
-            <span>
-              <span className={styles.sectionKicker}>Identificação</span>
-              <strong>Dados do ensaio</strong>
+            <span className={styles.metadataIdentity}>
+              <span className={styles.metadataIcon} aria-hidden="true"><CalendarDays /></span>
+              <span>
+                <span className={styles.sectionKicker}>Identificação</span>
+                <strong>Dados do ensaio</strong>
+                {completedMetadata && (
+                  <small>{state.metadata.locality} · {state.metadata.city}/{state.metadata.uf}</small>
+                )}
+              </span>
             </span>
-            <span className={styles.completionTag}>
-              {completedMetadata ? "Completo" : "Preencher"}
+            <span className={styles.metadataSummaryActions}>
+              <span className={styles.completionTag}>
+                {completedMetadata && <CheckCircle2 aria-hidden="true" />}
+                {completedMetadata ? "Completo" : "Preencher"}
+              </span>
+              <ChevronDown className={styles.metadataChevron} aria-hidden="true" />
             </span>
           </summary>
           <div className={styles.metadataForm}>
@@ -318,7 +328,7 @@ export function MusicalCounter() {
                   <SelectTrigger id="uf" aria-label="Estado" className={styles.ufSelectTrigger}>
                     <SelectValue placeholder="UF" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent position="popper" align="end" className={styles.ufSelectContent}>
                     {UF_OPTIONS.map((uf) => <SelectItem key={uf} value={uf}>{uf}</SelectItem>)}
                   </SelectContent>
                 </Select>
@@ -332,7 +342,10 @@ export function MusicalCounter() {
             <p className={styles.eyebrow}>Orquestra</p>
             <h2>Instrumentos</h2>
           </span>
-          <strong>{totals.orchestra}</strong>
+          <span className={styles.sectionTotal}>
+            <small>Total</small>
+            <strong>{totals.orchestra}</strong>
+          </span>
         </div>
 
         <div className={styles.familyList}>
@@ -341,7 +354,6 @@ export function MusicalCounter() {
               key={family.id}
               id={`family-${family.id}`}
               label={family.label}
-              badge={FAMILY_BADGES[family.id]}
               instruments={family.instruments}
               counts={state.counts}
               subtotal={totals.families[family.id]}
@@ -364,6 +376,7 @@ export function MusicalCounter() {
               <small>Subtotal</small>
               <strong>{totals.organists}</strong>
             </span>
+            <ChevronDown className={styles.familyChevron} aria-hidden="true" />
           </summary>
           <div className={styles.familyBody}>
             <CounterRow instrument="organ-played" label="Organistas que tocaram" value={state.organists.played} onDecrease={() => adjustOrganists("played", -1)} onIncrease={() => adjustOrganists("played", 1)} />
@@ -393,7 +406,7 @@ export function MusicalCounter() {
       </footer>
 
       <AlertDialog open={confirmReset} onOpenChange={setConfirmReset}>
-        <AlertDialogContent className={styles.confirmDialog}>
+        <AlertDialogContent size="sm" className={styles.confirmDialog}>
           <AlertDialogHeader>
             <AlertDialogMedia className={styles.dialogIcon}><RotateCcw aria-hidden="true" /></AlertDialogMedia>
             <AlertDialogTitle>Iniciar um novo ensaio?</AlertDialogTitle>
