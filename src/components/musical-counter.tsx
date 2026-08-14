@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
+import { RehearsalDatePicker } from "@/components/rehearsal-date-picker";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -43,11 +44,8 @@ import {
   CalendarDays,
   CheckCircle2,
   ChevronDown,
-  Church,
-  Clock3,
   FileDown,
   LoaderCircle,
-  MapPin,
   Music2,
   RotateCcw,
 } from "lucide-react";
@@ -298,27 +296,31 @@ export function MusicalCounter() {
             <div className={styles.formGridTwo}>
               <Field className={styles.shadcnField}>
                 <FieldLabel htmlFor="date" className={styles.shadcnFieldLabel}>
-                  <CalendarDays aria-hidden="true" />Data
+                  Data
                 </FieldLabel>
-                <Input id="date" type="date" value={state.metadata.date} onChange={(event) => updateMetadata("date", event.target.value)} />
+                <RehearsalDatePicker
+                  id="date"
+                  value={state.metadata.date}
+                  onChange={(value) => updateMetadata("date", value)}
+                />
               </Field>
               <Field className={styles.shadcnField}>
                 <FieldLabel htmlFor="time" className={styles.shadcnFieldLabel}>
-                  <Clock3 aria-hidden="true" />Horário
+                  Horário
                 </FieldLabel>
                 <Input id="time" type="time" value={state.metadata.time} onChange={(event) => updateMetadata("time", event.target.value)} />
               </Field>
             </div>
             <Field className={styles.shadcnField}>
               <FieldLabel htmlFor="locality" className={styles.shadcnFieldLabel}>
-                <Church aria-hidden="true" />Localidade
+                Localidade
               </FieldLabel>
               <Input id="locality" type="text" autoComplete="organization" placeholder="Ex.: Jardim das Flores" value={state.metadata.locality} onChange={(event) => updateMetadata("locality", event.target.value)} />
             </Field>
             <div className={styles.formGridCity}>
               <Field className={styles.shadcnField}>
                 <FieldLabel htmlFor="city" className={styles.shadcnFieldLabel}>
-                  <MapPin aria-hidden="true" />Cidade
+                  Cidade
                 </FieldLabel>
                 <Input id="city" type="text" autoComplete="address-level2" placeholder="Cidade" value={state.metadata.city} onChange={(event) => updateMetadata("city", event.target.value)} />
               </Field>

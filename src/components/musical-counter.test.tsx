@@ -81,6 +81,45 @@ describe("Contador Musical", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("seleciona a data pelo calendário da interface", async () => {
+    const user = userEvent.setup();
+    render(<MusicalCounter />);
+
+    const dateTrigger = await screen.findByRole("button", {
+      name: /Data do ensaio:/i,
+    });
+    await user.click(dateTrigger);
+
+    const targetDate = new Date();
+    targetDate.setHours(12, 0, 0, 0);
+    targetDate.setDate(targetDate.getDate() + 1);
+    const targetLabel = new Intl.DateTimeFormat("pt-BR", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(targetDate);
+
+    await user.click(screen.getByRole("button", { name: targetLabel }));
+
+    const expectedDate = [
+      targetDate.getFullYear(),
+      String(targetDate.getMonth() + 1).padStart(2, "0"),
+      String(targetDate.getDate()).padStart(2, "0"),
+    ].join("-");
+    const expectedDisplay = [
+      String(targetDate.getDate()).padStart(2, "0"),
+      String(targetDate.getMonth() + 1).padStart(2, "0"),
+      targetDate.getFullYear(),
+    ].join("/");
+
+    expect(dateTrigger).toHaveTextContent(expectedDisplay);
+    await waitFor(() => {
+      const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "{}");
+      expect(saved.metadata.date).toBe(expectedDate);
+    });
+  });
+
   it("usa as imagens geradas nos instrumentos e mantém o ícone do órgão", async () => {
     const { container } = render(<MusicalCounter />);
     await screen.findByRole("button", { name: "Aumentar Violino" });

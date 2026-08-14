@@ -303,7 +303,7 @@
 
 .metadataSummary:focus-visible,
 .familySummary:focus-visible {
-  box-shadow: inset 0 0 0 3px rgba(3, 61, 96, 0.18);
+  box-shadow: inset 0 0 0 2px rgba(3, 61, 96, 0.12);
 }
 
 .metadataSummary::-webkit-details-marker,
@@ -405,10 +405,10 @@
 
 .metadataForm {
   display: grid;
-  gap: 14px;
-  padding: 16px;
+  gap: 16px;
+  padding: 17px 16px 18px;
   border-top: 1px solid var(--ccb-border);
-  background: #fbfcfd;
+  background: #ffffff;
 }
 
 .formGridTwo,
@@ -428,31 +428,67 @@
 }
 
 .shadcnField {
-  gap: 7px;
+  gap: 6px;
 }
 
 .shadcnFieldLabel {
   min-height: 16px;
-  padding-inline: 2px;
-  color: var(--ccb-blue);
+  padding-inline: 1px;
+  color: #435964;
   font-size: 11px;
-  font-weight: 700;
-}
-
-.shadcnFieldLabel svg {
-  width: 14px;
-  height: 14px;
-  flex: 0 0 14px;
-  color: var(--ccb-red);
+  font-weight: 650;
+  letter-spacing: 0.01em;
 }
 
 .shadcnField :global([data-slot="input"]),
 .ufSelectTrigger {
-  height: 50px;
-  border-radius: 13px;
+  height: 48px;
+  border-radius: 12px;
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
+}
+
+.datePickerTrigger {
+  width: 100%;
+  height: 48px;
+  justify-content: space-between;
+  padding-inline: 13px;
+  color: var(--ccb-ink);
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  box-shadow: 0 2px 7px rgba(3, 35, 53, 0.045);
+}
+
+.datePickerTrigger svg {
+  width: 18px;
+  height: 18px;
+  color: var(--ccb-ink);
+}
+
+.datePickerDialog {
+  width: 338px;
+  max-width: calc(100vw - 16px);
+  overflow: hidden;
+  padding: 0;
+  border-color: #cbd9e1;
+  border-radius: 18px;
+  background: white;
+}
+
+.datePickerActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px;
+  border-top: 1px solid var(--ccb-border);
+  background: #f8fafb;
+}
+
+.datePickerActions button {
+  min-height: 48px;
+  box-shadow: none;
 }
 
 .ufSelectTrigger {
