@@ -9,33 +9,42 @@
 }
 
 :root {
-  --background: #f5f7f9;
-  --foreground: #17232b;
-  --card: #ffffff;
-  --card-foreground: #17232b;
-  --popover: #ffffff;
-  --popover-foreground: #17232b;
-  --primary: #033d60;
-  --primary-foreground: #ffffff;
-  --secondary: #eef2f5;
-  --secondary-foreground: #033d60;
-  --muted: #eef2f5;
-  --muted-foreground: #667580;
-  --accent: #eaf2f6;
-  --accent-foreground: #033d60;
-  --destructive: #d91f26;
-  --border: #dbe3e8;
-  --input: #c8d4dc;
-  --ring: #033d60;
-  --radius: 0.875rem;
-  --ccb-blue: #033d60;
-  --ccb-gray: #d4d9e2;
-  --ccb-surface: #f5f7f9;
-  --ccb-red: #d91f26;
-  --ccb-ink: #17232b;
-  --ccb-text: #667580;
-  --ccb-border: #dbe3e8;
-  --card-shadow: 0 8px 24px rgba(3, 35, 53, 0.055);
+  --moss: #606c38;
+  --sage: #8b9d83;
+  --clay: #b08b6e;
+  --terracotta: #c66b3d;
+  --ochre: #c08e3a;
+  --sand: #e8dcc7;
+  --oat: #d4b895;
+  --earth-ink: #303824;
+  --earth-muted: #514635;
+  --background: var(--sand);
+  --foreground: var(--earth-ink);
+  --card: #e4d5bd;
+  --card-foreground: var(--earth-ink);
+  --popover: #e4d5bd;
+  --popover-foreground: var(--earth-ink);
+  --primary: #52602f;
+  --primary-foreground: var(--sand);
+  --secondary: var(--oat);
+  --secondary-foreground: var(--earth-ink);
+  --muted: #ddccb2;
+  --muted-foreground: var(--earth-muted);
+  --accent: #c9b28f;
+  --accent-foreground: var(--earth-ink);
+  --destructive: #884226;
+  --border: #b59a78;
+  --input: #a98d6b;
+  --ring: var(--terracotta);
+  --radius: 1.25rem;
+  --ccb-blue: var(--moss);
+  --ccb-gray: var(--oat);
+  --ccb-surface: var(--sand);
+  --ccb-red: var(--terracotta);
+  --ccb-ink: var(--earth-ink);
+  --ccb-text: var(--earth-muted);
+  --ccb-border: #b59a78;
+  --card-shadow: 0 14px 32px rgba(79, 63, 40, 0.12);
 }
 
 @theme inline {
@@ -78,7 +87,7 @@ body {
   min-height: 100%;
   color: var(--ccb-ink);
   background: var(--ccb-surface);
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-epilogue), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -107,5 +116,5 @@ summary {
 
 html {
   scroll-behavior: smooth;
-  background: var(--ccb-blue);
+  background: var(--moss);
 }

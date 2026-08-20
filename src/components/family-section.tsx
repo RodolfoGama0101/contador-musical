@@ -45,11 +45,13 @@ export function FamilySection({
             <small>{instruments.length} instrumentos</small>
           </span>
         </span>
-        <span className={styles.familyTotal}>
-          <small>Subtotal</small>
-          <strong>{subtotal}</strong>
+        <span className={styles.familySummaryAside}>
+          <span className={styles.familyTotal}>
+            <small>Subtotal</small>
+            <strong>{subtotal}</strong>
+          </span>
+          <ChevronDown className={styles.familyChevron} aria-hidden="true" />
         </span>
-        <ChevronDown className={styles.familyChevron} aria-hidden="true" />
       </summary>
       <div className={styles.familyBody}>
         {instruments.map((instrument) => (

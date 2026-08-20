@@ -5,6 +5,7 @@ import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
 import { RehearsalDatePicker } from "@/components/rehearsal-date-picker";
+import { RehearsalTimePicker } from "@/components/rehearsal-time-picker";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -249,9 +250,14 @@ export function MusicalCounter() {
 
       <main className={styles.mainContent}>
         <section className={styles.introCard}>
-          <p className={styles.eyebrow}>Contagem do ensaio</p>
-          <h1>Registre a orquestra com poucos toques.</h1>
-          <p>Os dados ficam somente neste aparelho e são salvos automaticamente.</p>
+          <span className={styles.introIcon} aria-hidden="true">
+            <Music2 />
+          </span>
+          <div className={styles.introCopy}>
+            <p className={styles.eyebrow}>Contagem do ensaio</p>
+            <h1>Registre a orquestra com poucos toques.</h1>
+            <p>Os dados ficam somente neste aparelho e são salvos automaticamente.</p>
+          </div>
         </section>
 
         {storageWarning && (
@@ -308,7 +314,11 @@ export function MusicalCounter() {
                 <FieldLabel htmlFor="time" className={styles.shadcnFieldLabel}>
                   Horário
                 </FieldLabel>
-                <Input id="time" type="time" value={state.metadata.time} onChange={(event) => updateMetadata("time", event.target.value)} />
+                <RehearsalTimePicker
+                  id="time"
+                  value={state.metadata.time}
+                  onChange={(value) => updateMetadata("time", value)}
+                />
               </Field>
             </div>
             <Field className={styles.shadcnField}>
@@ -374,11 +384,13 @@ export function MusicalCounter() {
                 <small>Organistas presentes</small>
               </span>
             </span>
-            <span className={styles.familyTotal}>
-              <small>Subtotal</small>
-              <strong>{totals.organists}</strong>
+            <span className={styles.familySummaryAside}>
+              <span className={styles.familyTotal}>
+                <small>Subtotal</small>
+                <strong>{totals.organists}</strong>
+              </span>
+              <ChevronDown className={styles.familyChevron} aria-hidden="true" />
             </span>
-            <ChevronDown className={styles.familyChevron} aria-hidden="true" />
           </summary>
           <div className={styles.familyBody}>
             <CounterRow instrument="organ-played" label="Organistas que tocaram" value={state.organists.played} onDecrease={() => adjustOrganists("played", -1)} onIncrease={() => adjustOrganists("played", 1)} />

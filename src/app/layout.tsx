@@ -1,6 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { Epilogue, Fraunces } from "next/font/google";
 import { ServiceWorkerUpdater } from "@/components/service-worker-updater";
 import "./globals.css";
+
+const epilogue = Epilogue({
+  subsets: ["latin"],
+  variable: "--font-epilogue",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   applicationName: "Contador Musical",
@@ -15,14 +28,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#033d60",
+  themeColor: "#606c38",
   colorScheme: "light",
   viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${epilogue.variable} ${fraunces.variable}`}>
       <body>
         <ServiceWorkerUpdater />
         {children}

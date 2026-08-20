@@ -120,6 +120,32 @@ describe("Contador Musical", () => {
     });
   });
 
+  it("ajusta o horário pela interface sem depender do seletor nativo", async () => {
+    const user = userEvent.setup();
+    render(<MusicalCounter />);
+
+    const timeTrigger = await screen.findByRole("button", {
+      name: /Horário do ensaio:/i,
+    });
+    const initialHour = Number(timeTrigger.textContent?.split(":")[0] ?? 0);
+    const expectedHour = String((initialHour + 1) % 24).padStart(2, "0");
+
+    await user.click(timeTrigger);
+    expect(
+      screen.getByRole("dialog", { name: "Ajuste a hora e os minutos" }),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Aumentar hora" }));
+    await user.click(screen.getByRole("button", { name: "45" }));
+    await user.click(screen.getByRole("button", { name: /Confirmar/i }));
+
+    expect(timeTrigger).toHaveTextContent(`${expectedHour}:45`);
+    await waitFor(() => {
+      const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "{}");
+      expect(saved.metadata.time).toBe(`${expectedHour}:45`);
+    });
+  });
+
   it("usa as imagens geradas nos instrumentos e mantém o ícone do órgão", async () => {
     const { container } = render(<MusicalCounter />);
     await screen.findByRole("button", { name: "Aumentar Violino" });
