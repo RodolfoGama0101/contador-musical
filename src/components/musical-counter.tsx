@@ -218,7 +218,7 @@ export function MusicalCounter() {
             <CcbLogo compact />
             <span>
               <strong>Contador Musical</strong>
-              <small>Ensaio musical</small>
+              <small>Congregação Cristã no Brasil</small>
             </span>
           </div>
           <div className={styles.grandTotal} aria-live="polite">
@@ -242,9 +242,9 @@ export function MusicalCounter() {
             <Music2 />
           </span>
           <div className={styles.introCopy}>
-            <p className={styles.eyebrow}>Contagem do ensaio</p>
-            <h1>Registre a orquestra com poucos toques.</h1>
-            <p>Os dados ficam somente neste aparelho e são salvos automaticamente.</p>
+            <p className={styles.eyebrow}>Ensaio musical</p>
+            <h1>Contador do Ensaio Musical</h1>
+            <p>Registre os músicos e organistas presentes. A contagem é salva automaticamente neste aparelho.</p>
           </div>
         </section>
 

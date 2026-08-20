@@ -9,42 +9,32 @@
 }
 
 :root {
-  --moss: #606c38;
-  --sage: #8b9d83;
-  --clay: #b08b6e;
-  --terracotta: #c66b3d;
-  --ochre: #c08e3a;
-  --sand: #e8dcc7;
-  --oat: #d4b895;
-  --earth-ink: #303824;
-  --earth-muted: #514635;
-  --background: var(--sand);
-  --foreground: var(--earth-ink);
-  --card: #e4d5bd;
-  --card-foreground: var(--earth-ink);
-  --popover: #e4d5bd;
-  --popover-foreground: var(--earth-ink);
-  --primary: #52602f;
-  --primary-foreground: var(--sand);
-  --secondary: var(--oat);
-  --secondary-foreground: var(--earth-ink);
-  --muted: #ddccb2;
-  --muted-foreground: var(--earth-muted);
-  --accent: #c9b28f;
-  --accent-foreground: var(--earth-ink);
-  --destructive: #884226;
-  --border: #b59a78;
-  --input: #a98d6b;
-  --ring: var(--terracotta);
-  --radius: 1.25rem;
-  --ccb-blue: var(--moss);
-  --ccb-gray: var(--oat);
-  --ccb-surface: var(--sand);
-  --ccb-red: var(--terracotta);
-  --ccb-ink: var(--earth-ink);
-  --ccb-text: var(--earth-muted);
-  --ccb-border: #b59a78;
-  --card-shadow: 0 14px 32px rgba(79, 63, 40, 0.12);
+  --background: #f7f7f8;
+  --foreground: #222222;
+  --card: #ffffff;
+  --card-foreground: #222222;
+  --popover: #ffffff;
+  --popover-foreground: #222222;
+  --primary: #002fa7;
+  --primary-foreground: #ffffff;
+  --secondary: #eeeeef;
+  --secondary-foreground: #222222;
+  --muted: #eeeeef;
+  --muted-foreground: #666666;
+  --accent: #eeeeef;
+  --accent-foreground: #222222;
+  --destructive: #222222;
+  --border: #c8c8ca;
+  --input: #9a9a9d;
+  --ring: #002fa7;
+  --radius: 0.125rem;
+  --ccb-blue: #002fa7;
+  --ccb-gray: #eeeeef;
+  --ccb-surface: #f7f7f8;
+  --ccb-red: #002fa7;
+  --ccb-ink: #222222;
+  --ccb-text: #666666;
+  --ccb-border: #c8c8ca;
 }
 
 @theme inline {
@@ -87,7 +77,7 @@ body {
   min-height: 100%;
   color: var(--ccb-ink);
   background: var(--ccb-surface);
-  font-family: var(--font-epilogue), sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -116,5 +106,5 @@ summary {
 
 html {
   scroll-behavior: smooth;
-  background: var(--moss);
+  background: #f7f7f8;
 }
