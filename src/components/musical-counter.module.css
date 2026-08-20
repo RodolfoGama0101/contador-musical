@@ -661,12 +661,95 @@
 
 .ufSelectTrigger {
   width: 100%;
+  justify-content: space-between;
 }
 
-.ufSelectContent {
-  width: 128px;
-  min-width: 128px;
-  max-height: min(304px, var(--radix-select-content-available-height));
+.ufSelectTrigger svg {
+  width: 17px;
+  height: 17px;
+  color: var(--moss);
+}
+
+.ufPickerDialog {
+  width: 338px;
+  max-width: calc(100vw - 16px);
+  overflow: hidden;
+  padding: 0;
+  border-color: var(--clay);
+  border-radius: 26px;
+  background: #e4d5bd;
+}
+
+.ufPickerHeader {
+  padding: 18px 22px 14px;
+  text-align: center;
+}
+
+.ufPickerEyebrow {
+  color: var(--terracotta-dark);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ufPickerTitle {
+  margin-top: 3px;
+  color: var(--earth-ink);
+  font-family: var(--font-fraunces), serif;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.ufPickerGrid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 6px;
+  padding: 0 16px 16px;
+}
+
+.ufPickerOption {
+  position: relative;
+  grid-column: span 2;
+  min-width: 0;
+  min-height: 48px;
+  padding-inline: 8px;
+  border-radius: 15px;
+  box-shadow: none;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ufPickerOption:nth-last-child(3) {
+  grid-column: 2 / span 2;
+}
+
+.ufPickerOption[aria-pressed="true"] {
+  color: var(--sand);
+  border-color: var(--moss);
+  background: var(--moss);
+}
+
+.ufPickerOption svg {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 11px;
+  height: 11px;
+  color: var(--ochre);
+}
+
+.ufPickerActions {
+  padding: 9px;
+  border-top: 1px solid var(--clay);
+  background: #dbc8aa;
+}
+
+.ufPickerActions button {
+  width: 100%;
+  min-height: 48px;
+  box-shadow: none;
 }
 
 .sectionHeading {

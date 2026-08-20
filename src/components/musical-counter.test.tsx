@@ -146,6 +146,28 @@ describe("Contador Musical", () => {
     });
   });
 
+  it("seleciona a UF em uma grade acessível e salva localmente", async () => {
+    const user = userEvent.setup();
+    render(<MusicalCounter />);
+
+    const stateTrigger = await screen.findByRole("button", {
+      name: "Estado: não selecionado",
+    });
+    await user.click(stateTrigger);
+
+    expect(
+      screen.getByRole("dialog", { name: "Selecionar UF" }),
+    ).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "SP — São Paulo" }));
+
+    expect(stateTrigger).toHaveTextContent("SP");
+    expect(stateTrigger).toHaveAccessibleName("Estado: São Paulo (SP)");
+    await waitFor(() => {
+      const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "{}");
+      expect(saved.metadata.uf).toBe("SP");
+    });
+  });
+
   it("usa as imagens geradas nos instrumentos e mantém o ícone do órgão", async () => {
     const { container } = render(<MusicalCounter />);
     await screen.findByRole("button", { name: "Aumentar Violino" });

@@ -5,6 +5,7 @@ import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
 import { RehearsalDatePicker } from "@/components/rehearsal-date-picker";
+import { RehearsalStatePicker } from "@/components/rehearsal-state-picker";
 import { RehearsalTimePicker } from "@/components/rehearsal-time-picker";
 import {
   AlertDialog,
@@ -20,13 +21,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { INSTRUMENT_FAMILIES, type InstrumentId } from "@/data/instruments";
 import { generateRehearsalPdf } from "@/lib/pdf";
 import {
@@ -50,12 +44,6 @@ import {
   Music2,
   RotateCcw,
 } from "lucide-react";
-
-const UF_OPTIONS = [
-  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
-  "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO",
-  "RR", "SC", "SP", "SE", "TO",
-];
 
 const downloadBlob = (blob: Blob, filename: string) => {
   const url = URL.createObjectURL(blob);
@@ -336,14 +324,11 @@ export function MusicalCounter() {
               </Field>
               <Field className={styles.shadcnField}>
                 <FieldLabel htmlFor="uf" className={styles.shadcnFieldLabel}>UF</FieldLabel>
-                <Select value={state.metadata.uf} onValueChange={(value) => updateMetadata("uf", value)}>
-                  <SelectTrigger id="uf" aria-label="Estado" className={styles.ufSelectTrigger}>
-                    <SelectValue placeholder="UF" />
-                  </SelectTrigger>
-                  <SelectContent position="popper" align="end" className={styles.ufSelectContent}>
-                    {UF_OPTIONS.map((uf) => <SelectItem key={uf} value={uf}>{uf}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                <RehearsalStatePicker
+                  id="uf"
+                  value={state.metadata.uf}
+                  onChange={(value) => updateMetadata("uf", value)}
+                />
               </Field>
             </div>
           </div>
