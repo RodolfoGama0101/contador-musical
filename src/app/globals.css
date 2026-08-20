@@ -99,6 +99,24 @@ select {
   font-family: inherit;
 }
 
+a[href],
+button:not(:disabled),
+summary,
+select:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+input:not(:disabled) {
+  cursor: text;
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
 button,
 summary {
   -webkit-tap-highlight-color: transparent;
