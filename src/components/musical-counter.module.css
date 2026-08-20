@@ -494,6 +494,7 @@
 .timePickerTrigger,
 .ufSelectTrigger {
   height: 48px;
+  padding-inline: 14px;
   border: 1px solid var(--input);
   border-radius: 16px;
   background: #e8d8bf;
@@ -509,7 +510,6 @@
 .timePickerTrigger {
   width: 100%;
   justify-content: space-between;
-  padding-inline: 13px;
 }
 
 .datePickerTrigger svg,
