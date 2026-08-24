@@ -41,7 +41,6 @@ import {
   CalendarDays,
   CheckCircle2,
   ChevronDown,
-  CircleUserRound,
   FileDown,
   LoaderCircle,
   Music2,
@@ -357,9 +356,10 @@ export function MusicalCounter() {
               </span>
               <span>
                 <strong>Órgão Eletrônico</strong>
-                <small className={styles.organistCaption}>
-                  <CircleUserRound aria-hidden="true" />
-                  Organistas presentes
+                <small>
+                  {totals.organists === 1
+                    ? "1 organista presente"
+                    : `${totals.organists} organistas presentes`}
                 </small>
               </span>
             </span>

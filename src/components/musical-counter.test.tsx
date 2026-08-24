@@ -71,6 +71,18 @@ describe("Contador Musical", () => {
     expect(validation).not.toHaveTextContent("Responsável");
   });
 
+  it("exibe no card o total atualizado de organistas", async () => {
+    const user = userEvent.setup();
+    render(<MusicalCounter />);
+
+    expect(await screen.findByText("0 organistas presentes")).toBeInTheDocument();
+    await user.click(
+      screen.getByRole("button", { name: "Aumentar Organistas que tocaram" }),
+    );
+
+    expect(screen.getByText("1 organista presente")).toBeInTheDocument();
+  });
+
   it("não exibe os campos Regional e Responsável pela contagem", async () => {
     render(<MusicalCounter />);
     await screen.findByRole("button", { name: "Aumentar Violino" });
