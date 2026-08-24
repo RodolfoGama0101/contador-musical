@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
-import { InstrumentIcon } from "@/components/instrument-icon";
 import { RehearsalDatePicker } from "@/components/rehearsal-date-picker";
 import { RehearsalStatePicker } from "@/components/rehearsal-state-picker";
 import { RehearsalTimePicker } from "@/components/rehearsal-time-picker";
@@ -347,7 +347,13 @@ export function MusicalCounter() {
           <summary className={styles.familySummary}>
             <span className={styles.familyIdentity}>
               <span className={`${styles.familyBadge} ${styles.organBadge}`} aria-hidden="true">
-                <InstrumentIcon instrument="organ-played" />
+                <Image
+                  src="/icons/instruments/organ-electronic.png"
+                  alt=""
+                  width={84}
+                  height={84}
+                  unoptimized
+                />
               </span>
               <span>
                 <strong>Órgão Eletrônico</strong>

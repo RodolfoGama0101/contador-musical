@@ -751,9 +751,8 @@
   object-fit: contain;
 }
 
-.organBadge svg {
-  width: 24px;
-  height: 24px;
+.organBadge img {
+  transform: scale(1.12);
 }
 
 .organistCaption {
