@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { INSTRUMENT_FAMILIES, type InstrumentId } from "@/data/instruments";
+import { deliverPdf } from "@/lib/pdf-download";
 import { generateRehearsalPdf } from "@/lib/pdf";
 import {
   calculateTotals,
@@ -44,17 +45,6 @@ import {
   Music2,
   RotateCcw,
 } from "lucide-react";
-
-const downloadBlob = (blob: Blob, filename: string) => {
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = filename;
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-  URL.revokeObjectURL(url);
-};
 
 export function MusicalCounter() {
   const [state, setState] = useState<RehearsalState>(() =>
@@ -168,27 +158,18 @@ export function MusicalCounter() {
     setMessage("");
     try {
       const { blob, filename } = await generateRehearsalPdf(state);
-      const file = new File([blob], filename, { type: "application/pdf" });
-      const shareData: ShareData = {
+      const result = await deliverPdf({
+        blob,
+        filename,
         title: "Resumo do Ensaio Musical",
         text: `Resumo do ensaio de ${state.metadata.locality}`,
-        files: [file],
-      };
+      });
 
-      if (navigator.share && navigator.canShare?.(shareData)) {
-        try {
-          await navigator.share(shareData);
-          setMessage("PDF criado e compartilhado.");
-        } catch (error) {
-          if (error instanceof DOMException && error.name === "AbortError") {
-            setMessage("Compartilhamento cancelado. O ensaio continua salvo.");
-          } else {
-            downloadBlob(blob, filename);
-            setMessage("PDF criado e baixado.");
-          }
-        }
+      if (result === "shared") {
+        setMessage("PDF criado e compartilhado.");
+      } else if (result === "share-cancelled") {
+        setMessage("Compartilhamento cancelado. O ensaio continua salvo.");
       } else {
-        downloadBlob(blob, filename);
         setMessage("PDF criado e baixado.");
       }
     } catch {
