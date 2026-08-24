@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CcbLogo } from "@/components/ccb-logo";
 import { CounterRow } from "@/components/counter-row";
 import { FamilySection } from "@/components/family-section";
+import { InstrumentIcon } from "@/components/instrument-icon";
 import { RehearsalDatePicker } from "@/components/rehearsal-date-picker";
 import { RehearsalStatePicker } from "@/components/rehearsal-state-picker";
 import { RehearsalTimePicker } from "@/components/rehearsal-time-picker";
@@ -40,6 +41,7 @@ import {
   CalendarDays,
   CheckCircle2,
   ChevronDown,
+  CircleUserRound,
   FileDown,
   LoaderCircle,
   Music2,
@@ -344,10 +346,15 @@ export function MusicalCounter() {
         <details className={styles.familyCard} id="family-organists">
           <summary className={styles.familySummary}>
             <span className={styles.familyIdentity}>
-              <span className={`${styles.familyBadge} ${styles.organBadge}`} aria-hidden="true"><Music2 /></span>
+              <span className={`${styles.familyBadge} ${styles.organBadge}`} aria-hidden="true">
+                <InstrumentIcon instrument="organ-played" />
+              </span>
               <span>
                 <strong>Órgão Eletrônico</strong>
-                <small>Organistas presentes</small>
+                <small className={styles.organistCaption}>
+                  <CircleUserRound aria-hidden="true" />
+                  Organistas presentes
+                </small>
               </span>
             </span>
             <span className={styles.familySummaryAside}>

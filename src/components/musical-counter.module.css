@@ -756,6 +756,18 @@
   height: 24px;
 }
 
+.organistCaption {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.organistCaption svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+}
+
 .familyTotal {
   display: flex;
   min-width: 58px;
